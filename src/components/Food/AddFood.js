@@ -54,7 +54,7 @@ function AddFood(props) {
 
   return (
     <>
-      <Card className="add-food-current-price">£15</Card>
+      {/* <FoodListInfo /> */}
       <Card className="add-food-container">
         <form onSubmit={handleSubmit}>
           <select
