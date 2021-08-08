@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import FoodList from "./components/Food/FoodList";
 import AddFood from "./components/Food/AddFood";
 import Info from "./components/Food/Info";
+import NavBar from "./components/UI/NavBar";
+import Table from "./components/UI/Table";
 import "./App.css";
 
 // const dummyFoodList = [
@@ -58,6 +60,8 @@ function App() {
 
   return (
     <div className="app">
+      <NavBar />
+      <Table />
       <Info info={foodList} />
       <AddFood restaurants={restaurantList} liftOrder={addItem} />
       <FoodList items={foodList} />

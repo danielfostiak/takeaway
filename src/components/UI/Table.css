@@ -1,0 +1,10 @@
+.table-container {
+  position: absolute;
+  left: 20vw;
+  top: 17vh;
+}
+
+.table-image {
+  height: 75vh;
+  width: 75vw;
+}
