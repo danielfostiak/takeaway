@@ -1,57 +1,60 @@
-import React from "react";
+import React, { useState } from "react";
 import FoodList from "./components/Food/FoodList";
 import AddFood from "./components/Food/AddFood";
 import "./App.css";
 
+// const dummyFoodList = [
+//   { title: "Chicken", price: "6", id: Math.random() },
+//   { title: "Hotdog", price: "3", id: Math.random() },
+//   { title: "Pizza", price: "9", id: Math.random() },
+//   { title: "Chicken", price: "6", id: Math.random() },
+//   { title: "Hotdog", price: "3", id: Math.random() },
+//   { title: "Pizza", price: "9", id: Math.random() },
+// ];
+
 function App() {
-  const foodList = [
-    { title: "Chicken", price: "6", id: Math.random() },
-    { title: "Hotdog", price: "3", id: Math.random() },
-    { title: "Pizza", price: "9", id: Math.random() },
-    { title: "Bread", price: "5", id: Math.random() },
-    { title: "Chicken", price: "6", id: Math.random() },
-    { title: "Hotdog", price: "3", id: Math.random() },
-    { title: "Pizza", price: "9", id: Math.random() },
-    { title: "Bread", price: "5", id: Math.random() },
-    { title: "Hotdog", price: "3", id: Math.random() },
-    { title: "Pizza", price: "9", id: Math.random() },
-    { title: "Hotdog", price: "3", id: Math.random() },
-    { title: "Pizza", price: "9", id: Math.random() },
-    { title: "Bread", price: "5", id: Math.random() },
-    { title: "Hotdog", price: "3", id: Math.random() },
-    { title: "Pizza", price: "9", id: Math.random() },
-  ];
+  const [foodList, setFoodList] = useState([]);
 
   const restaurantList = [
     {
       name: "Italian",
       options: [
-        { name: "Pasta", id: Math.random() },
-        { name: "Pizza", id: Math.random() },
+        { name: "Pasta", price: "5", id: Math.random() },
+        { name: "Pizza", price: "5", id: Math.random() },
       ],
       id: Math.random(),
     },
     {
       name: "Chinese",
       options: [
-        { name: "Duck wrap", id: Math.random() },
-        { name: "Prawns", id: Math.random() },
+        { name: "Duck wrap", price: "5", id: Math.random() },
+        { name: "Prawns", price: "5", id: Math.random() },
       ],
       id: Math.random(),
     },
     {
       name: "Mexican",
       options: [
-        { name: "Tortilla", id: Math.random() },
-        { name: "Beans", id: Math.random() },
+        { name: "Tortilla", price: "5", id: Math.random() },
+        { name: "Beans", price: "5", id: Math.random() },
       ],
       id: Math.random(),
     },
   ];
 
+  const addItem = (order) => {
+    console.log("App", order);
+    const newItem = {
+      title: order.option.name,
+      price: order.option.price,
+      id: order.option.id,
+    };
+    setFoodList(() => [...foodList, newItem]);
+  };
+
   return (
     <div className="app">
-      <AddFood restaurants={restaurantList} />
+      <AddFood restaurants={restaurantList} liftOrder={addItem} />
       <FoodList items={foodList} />
     </div>
   );

@@ -1,0 +1,41 @@
+.add-food-container {
+  width: 36vh;
+  display: inline-block;
+  position: absolute;
+  left: 81vw;
+  text-align: center;
+  margin-top: 1vh;
+}
+
+.add-food-current-price {
+  width: 16vh;
+  height: 10vh;
+  display: inline-block;
+  position: absolute;
+  left: 72vw;
+  text-align: center;
+  margin-top: 1vh;
+}
+
+.add-food-restaurant,
+.add-food-option {
+  border: none;
+  width: 8vw;
+  height: 2vw;
+  margin-top: 1vh;
+  margin: 1vh;
+  font-size: 2vh;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.32);
+  border-radius: 10px;
+}
+
+.add-food-submit {
+  border: none;
+  margin-bottom: 1vh;
+  height: 3vh;
+  width: fit-content;
+  font-size: 2vh;
+  background: lightsalmon;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.32);
+  border-radius: 10px;
+}

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Card from "../UI/Card";
+import "./AddFood.css";
 
 function AddFood(props) {
   const [selectedRestaurant, setSelectedRestaurant] = useState(
@@ -14,42 +16,74 @@ function AddFood(props) {
   );
 
   // console.log(
-  //   `Restaurant: ${selectedRestaurant.name} \n Food: ${selectedOption.name}`
+  //   `Selected Restaurant ${selectedRestaurant.name} \n Displayed Options ${displayedOptions} \n Selected Option ${selectedOption}`
   // );
 
   const handleRestaurantChange = (e) => {
-    console.log(e.target.children); // Search through this for the option with the same value as the e.target.value, get the id of the element, replace next find using id instead now
+    const restaurantsNodeList = [...e.target.children];
+    const selectedNode = restaurantsNodeList.find(
+      (node) => node.innerHTML === e.target.value
+    );
+    // Search through this for the option with the same value as the e.target.value, get the id of the element, replace next find using id instead now
     const newRestaurant = props.restaurants.find(
-      (restaurant) => restaurant.name === e.target.value
+      (restaurant) => restaurant.id == selectedNode.id
     );
     setSelectedRestaurant(newRestaurant);
     setDisplayedOptions(newRestaurant.options);
+    setSelectedOption(newRestaurant.options[0]);
   };
 
   const handleOptionChange = (e) => {
-    console.log();
+    const optionsNodeList = [...e.target.children];
+    const selectedNode = optionsNodeList.find(
+      (node) => node.innerHTML === e.target.value
+    );
+    const newOption = selectedRestaurant.options.find(
+      (option) => option.id == selectedNode.id
+    );
+    setSelectedOption(newOption);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // console.log(selectedRestaurant);
+    // setSelectedRestaurant(selectedRestaurant);
+    // Lift state
+    props.liftOrder({ restaurant: selectedRestaurant, option: selectedOption });
   };
 
   return (
-    <div>
-      <form>
-        <select onChange={handleRestaurantChange}>
-          {props.restaurants.map((restaurant) => {
-            return (
-              <option id={restaurant.id} key={restaurant.id}>
-                {restaurant.name}
-              </option>
-            );
-          })}
-        </select>
-        <select onChange={handleOptionChange}>
-          {displayedOptions.map((option) => {
-            // console.log(option);
-            return <option key={option.id}>{option.name}</option>;
-          })}
-        </select>
-      </form>
-    </div>
+    <>
+      <Card className="add-food-current-price">£15</Card>
+      <Card className="add-food-container">
+        <form onSubmit={handleSubmit}>
+          <select
+            className="add-food-restaurant"
+            value={selectedRestaurant.name}
+            onChange={handleRestaurantChange}
+          >
+            {props.restaurants.map((restaurant) => {
+              return (
+                <option id={restaurant.id} key={restaurant.id}>
+                  {restaurant.name}
+                </option>
+              );
+            })}
+          </select>
+          <select className="add-food-option" onChange={handleOptionChange}>
+            {displayedOptions.map((option) => {
+              // console.log(option);
+              return (
+                <option id={option.id} key={option.id}>
+                  {option.name} £{option.price}
+                </option>
+              );
+            })}
+          </select>
+          <input className="add-food-submit" type="submit"></input>
+        </form>
+      </Card>
+    </>
   );
 }
 
