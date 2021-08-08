@@ -13,11 +13,12 @@ function AddFood(props) {
     props.restaurants[0].options[0]
   );
 
-  console.log(
-    `Restaurant: ${selectedRestaurant.name} \n Food: ${selectedOption.name}`
-  );
+  // console.log(
+  //   `Restaurant: ${selectedRestaurant.name} \n Food: ${selectedOption.name}`
+  // );
 
   const handleRestaurantChange = (e) => {
+    console.log(e.target.children); // Search through this for the option with the same value as the e.target.value, get the id of the element, replace next find using id instead now
     const newRestaurant = props.restaurants.find(
       (restaurant) => restaurant.name === e.target.value
     );
@@ -26,7 +27,7 @@ function AddFood(props) {
   };
 
   const handleOptionChange = (e) => {
-    console.log(e.target);
+    console.log();
   };
 
   return (
