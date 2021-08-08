@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import FoodList from "./components/Food/FoodList";
 import AddFood from "./components/Food/AddFood";
+import Info from "./components/Food/Info";
 import "./App.css";
 
 // const dummyFoodList = [
@@ -47,13 +48,17 @@ function App() {
     const newItem = {
       title: order.option.name,
       price: order.option.price,
+      restaurant: order.restaurant.name,
       id: order.option.id,
     };
     setFoodList(() => [...foodList, newItem]);
   };
 
+  console.log(foodList);
+
   return (
     <div className="app">
+      <Info info={foodList} />
       <AddFood restaurants={restaurantList} liftOrder={addItem} />
       <FoodList items={foodList} />
     </div>

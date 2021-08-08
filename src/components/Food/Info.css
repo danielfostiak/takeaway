@@ -1,0 +1,18 @@
+.info-container {
+  position: absolute;
+  top: 79.5vh;
+  left: 76.5vw;
+  display: grid;
+  grid-template-columns: 200px 200px;
+  width: 45vh;
+}
+
+.info-box {
+  margin: 5px;
+  text-align: center;
+  align-items: center;
+}
+
+.info-data {
+  background-color: lightsalmon;
+}
